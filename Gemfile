@@ -39,4 +39,5 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'vault_of_satoshi'
+gem 'cryptsy-api', '~> 0.1.2'
 
