@@ -17,4 +17,4 @@
 
 .idea/
 .idea/*
-config/initializers/config.rb
+/config/crypto/crypts_conf.yml
