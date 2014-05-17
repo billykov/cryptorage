@@ -1,11 +1,16 @@
 class MonitorController < ApplicationController
   require 'cryptsy/api'
+  include HTTParty
   before_filter :set_currencies
   before_filter :set_vos_client
+
+  base_uri 'coinmarketcap-nexuist.rhcloud.com'
 
 
   def show
     cryptsy = get_cryptsy_data
+
+
 
     @ticker = {}
     @currencies.each do |currency|
@@ -13,19 +18,23 @@ class MonitorController < ApplicationController
 
       @ticker[currency]['cryptsy'] = cryptsy['return']['markets']["#{currency}/BTC"]['lasttradeprice']
 
+      @ticker[currency]['coinmarketcap'] = get_coinmarketcap_data currency.downcase
+
+
+
       @ticker[currency]['vos'] =
         begin
           vos_currency = get_vos_data currency , 'BTC'
           vos_currency.min_price
         rescue => e
-          'NO API DATA'
+          'N/A' # NO API DATA
         end
     end
     p ' s '
   end
 
   def set_currencies
-    @currencies = ['DOGE', 'DRK']
+    @currencies = ['DOGE', 'DRK', 'POT']
     @conversions = ['DOGE/BTC', 'BTC/DOGE']
   end
 
@@ -45,6 +54,12 @@ class MonitorController < ApplicationController
   def get_vos_data currency, to_currency
     Rails.cache.fetch("get_vos_#{currency}", :expires_in => 5.minutes) do
       @vos.info.ticker(order_currency: currency, payment_currency: to_currency)
+    end
+  end
+
+  def get_coinmarketcap_data currency
+    Rails.cache.fetch("get_coinmarketcap_#{currency}", :expires_in => 5.minutes) do
+      coinmarketcap = self.class.get("/api/#{currency}").to_hash
     end
   end
 end

@@ -6,12 +6,14 @@
     <th width="100">CryptoCoin</th>
     <th width="100">cryptsy</th>
     <th width="100">VOS</th>
+    <th width="100">coinmarketcap</th>
   </tr>
   <% @ticker.each do |ticker| %>
     <tr>
         <td><%= ticker[0] %></td>
         <td><%= ticker[1]['cryptsy'] %></td>
         <td><%= ticker[1]['vos'] %></td>
+        <td><%= ticker[1]['coinmarketcap']['price']['btc'] %></td>
     </tr>
   <% end %>
 
