@@ -32,7 +32,6 @@ class MonitorController < ApplicationController
           'N/A' # NO API DATA
         end
     end
-    p ' s '
   end
 
   def set_currencies

@@ -41,3 +41,6 @@ gem 'spring',        group: :development
 gem 'vault_of_satoshi'
 gem 'cryptsy-api', '~> 0.1.2'
 
+#bootstrap
+gem 'bootstrap-sass', '~> 3.1.1'
+
