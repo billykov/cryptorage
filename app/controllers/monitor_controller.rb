@@ -12,9 +12,11 @@ class MonitorController < ApplicationController
 
 
 
-    @ticker = {}
+    @ticker =  {}
     @currencies.each do |currency|
+      currency = currency.to_s
       @ticker[currency] = {}
+      @ticker[currency]['name'] = currency
 
       @ticker[currency]['cryptsy'] = cryptsy['return']['markets']["#{currency}/BTC"]['lasttradeprice']
 

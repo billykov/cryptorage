@@ -1,19 +1,21 @@
 <h1>Monitor</h1>
 <p>Monitor the price of your coins in different exchanges</p>
 
-<table style="width:300px; display: block; margin: 0 auto; text-align: left;">
+<table class="table" style="width:300px; display: block; margin: 0 auto; text-align: left;">
   <tr>
     <th width="100">CryptoCoin</th>
     <th width="100">cryptsy</th>
     <th width="100">VOS</th>
     <th width="100">coinmarketcap</th>
+    <th width="100">coinmarketcap [change 24h]</th>
   </tr>
-  <% @ticker.each do |ticker| %>
+  <% @ticker.map do |name, data| %>
     <tr>
-        <td><%= ticker[0] %></td>
-        <td><%= ticker[1]['cryptsy'] %></td>
-        <td><%= ticker[1]['vos'] %></td>
-        <td><%= ticker[1]['coinmarketcap']['price']['btc'] %></td>
+        <td><%= name %></td>
+        <td><%= data['cryptsy'] %></td>
+        <td><%= data['vos'] %></td>
+        <td><%= data['coinmarketcap']['price']['btc'] %></td>
+        <td><%= data['coinmarketcap']['change'] %></td>
     </tr>
   <% end %>
 
