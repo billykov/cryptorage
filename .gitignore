@@ -15,7 +15,7 @@
 /log/*.log
 /tmp
 
-.idea/
+.idea
 .idea/workspace.xml
 .idea/*
 /config/crypto/crypts_conf.yml
