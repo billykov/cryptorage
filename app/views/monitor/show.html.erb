@@ -12,9 +12,9 @@
   <% @ticker.map do |name, data| %>
     <tr>
         <td><%= name %></td>
-        <td><%= data['cryptsy'] %></td>
-        <td><%= data['vos'] %></td>
-        <td><%= data['coinmarketcap']['price']['btc'] %></td>
+        <td class="getMax"><%= data['cryptsy'] %></td>
+        <td class="getMax"><%= data['vos'] %></td>
+        <td class="getMax"><%= data['coinmarketcap']['price']['btc'] %></td>
         <td><%= data['coinmarketcap']['change'] %></td>
     </tr>
   <% end %>
